@@ -3,6 +3,7 @@ package com.sg.bankaccountkata.core.feature;
 import com.sg.bankaccountkata.core.domain.Transaction;
 import com.sg.bankaccountkata.core.domain.TransactionType;
 import com.sg.bankaccountkata.core.exception.NegativeAmountException;
+import com.sg.bankaccountkata.core.exception.NotEnoughMoneyException;
 import com.sg.bankaccountkata.core.port.out.TransactionRepositoryOutput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class WithdrawlFeatureTest {
     }
 
     @Test
-    public void shouldMakeAWithdrawal() throws NegativeAmountException {
+    public void shouldMakeAWithdrawal() throws NegativeAmountException, NotEnoughMoneyException {
         // Input objects
         int moneyToRetrive = 100;
         List<Transaction> transactions = asList(new Transaction(TransactionType.DEPOSIT, LocalDate.now(), 100, 100));
@@ -61,6 +62,28 @@ public class WithdrawlFeatureTest {
 
         // Execute the method being tested
         Exception exception = assertThrows(NegativeAmountException.class, () -> {
+            withdrawlFeature.withdraw(moneyToRetrive);
+        });
+        String actualMessage = exception.getMessage();
+
+        // Validation
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void shouldFailWithdrawlWhenNotEnoughMoney() {
+        // Input objects
+        int moneyToRetrive = 100;
+
+        // Expected objects
+        List<Transaction> transactions = asList(new Transaction(TransactionType.WITHDRAWL, LocalDate.now(), 0, 0));
+        String expectedMessage = "Withdrawal not possible, your account should be recharged";
+
+        // Mockito expectations
+        given(transactionRepositoryOutputMock.findAllTransactions()).willReturn(transactions);
+
+        // Execute the method being tested
+        Exception exception = assertThrows(NotEnoughMoneyException.class, () -> {
             withdrawlFeature.withdraw(moneyToRetrive);
         });
         String actualMessage = exception.getMessage();
