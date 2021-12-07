@@ -14,8 +14,7 @@ public class TransactionRepositoryFeature implements TransactionRepositoryOutput
         transactions.add(transaction);
     }
 
-    // TODO - to implement
     public List<Transaction> findAllTransactions() {
-        return null;
+        return transactions;
     }
 }
