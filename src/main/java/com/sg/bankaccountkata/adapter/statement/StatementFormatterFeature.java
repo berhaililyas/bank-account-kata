@@ -5,6 +5,7 @@ import com.sg.bankaccountkata.core.port.out.statement.StatementFormatterOutput;
 import com.sg.bankaccountkata.core.port.out.statement.StatementPrinterOutput;
 import com.sg.bankaccountkata.core.port.out.transaction.TransactionFormatterOutput;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class StatementFormatterFeature implements StatementFormatterOutput {
@@ -36,6 +37,7 @@ public class StatementFormatterFeature implements StatementFormatterOutput {
     private StringBuilder printStatementLines(List<Transaction> transactions) {
         StringBuilder statementLines = new StringBuilder();
         transactions.stream()
+                .sorted(Comparator.comparing(Transaction::getDate).reversed())
                 .forEach(transaction -> {
                     statementLines.append("\n");
                     statementLines.append(transactionFormatterOutput.format(transaction));

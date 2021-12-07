@@ -67,7 +67,7 @@ public class StatementFormatterFeatureTest {
     }
 
     @Test
-    void shouldFormatAStatementWithMultipleTransactions() {
+    void shouldFormatAStatementWithMultipleTransactionsInReverseDateOrder() {
         // Input objects
         Transaction deposit_1 = new Transaction(TransactionType.DEPOSIT, LocalDate.of(2021, 11, 28), 1000, 1000);
         Transaction withdrawl = new Transaction(TransactionType.WITHDRAWL, LocalDate.of(2021, 11, 30), -100, 900);
@@ -87,8 +87,8 @@ public class StatementFormatterFeatureTest {
         // Validation
         verify(statementPrinterOutputMock).print(
                 "OPERATION | DATE | AMOUNT | BALANCE\n" +
-                        "DEPOSIT | 28/11/2021 | 1000,00€ | 1000,00€\n" +
+                        "DEPOSIT | 05/12/2021 | 500,00€ | 1400,00€\n" +
                         "WITHDRAWL | 30/11/2021 | -100,00€ | 900,00€\n" +
-                        "DEPOSIT | 05/12/2021 | 500,00€ | 1400,00€");
+                        "DEPOSIT | 28/11/2021 | 1000,00€ | 1000,00€");
     }
 }
