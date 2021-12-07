@@ -24,14 +24,14 @@ public class DepositFeatureTest {
     private TransactionRepositoryOutput transactionRepositoryOutputMock;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.transactionRepositoryOutputMock = Mockito.mock(TransactionRepositoryOutput.class);
 
         this.depositFeature = new DepositFeature(transactionRepositoryOutputMock);
     }
 
     @Test
-    public void shouldMakeADeposit() throws NegativeAmountException {
+    void shouldMakeADeposit() throws NegativeAmountException {
         // Input objects
         int moneyToSave = 100;
 
@@ -50,7 +50,7 @@ public class DepositFeatureTest {
     }
 
     @Test
-    public void shouldFailDepositWhenNegativeAmount() {
+    void shouldFailDepositWhenNegativeAmount() {
         // Input objects
         int moneyToSave = -100;
 

@@ -18,12 +18,12 @@ public class TransactionRepositoryFeatureTest {
     private TransactionRepositoryFeature transactionRepositoryFeature;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.transactionRepositoryFeature = new TransactionRepositoryFeature();
     }
 
     @Test
-    public void shouldSaveATransaction() {
+    void shouldSaveATransaction() {
         // Input objects
         int moneyToSave = 100;
         Transaction transaction = new Transaction(TransactionType.DEPOSIT, LocalDate.now(), moneyToSave, moneyToSave);
@@ -40,7 +40,7 @@ public class TransactionRepositoryFeatureTest {
     }
 
     @Test
-    public void shouldBeInitiallyEmpty() {
+    void shouldBeInitiallyEmpty() {
         // Execute the method being tested
         List<Transaction> transactions = transactionRepositoryFeature.findAllTransactions();
 
@@ -49,7 +49,7 @@ public class TransactionRepositoryFeatureTest {
     }
 
     @Test
-    public void shouldReturnAllSavedTransactions() {
+    void shouldReturnAllSavedTransactions() {
         // Input objects
         Transaction transaction_1 = new Transaction(TransactionType.DEPOSIT, LocalDate.of(2021, 11, 28), 1000, 1000);
         Transaction transaction_2 = new Transaction(TransactionType.WITHDRAWL, LocalDate.of(2021, 11, 30), -100, 900);

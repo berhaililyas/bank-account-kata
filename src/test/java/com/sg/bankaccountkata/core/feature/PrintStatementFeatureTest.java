@@ -2,7 +2,7 @@ package com.sg.bankaccountkata.core.feature;
 
 import com.sg.bankaccountkata.core.domain.Transaction;
 import com.sg.bankaccountkata.core.domain.TransactionType;
-import com.sg.bankaccountkata.core.port.out.PrinterOutput;
+import com.sg.bankaccountkata.core.port.out.StatementFormatterOutput;
 import com.sg.bankaccountkata.core.port.out.TransactionRepositoryOutput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,45 +12,30 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.isA;
+import static java.util.Arrays.asList;
+import static java.util.Collections.EMPTY_LIST;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 
 public class PrintStatementFeatureTest {
 
     private PrintStatementFeature printStatementFeature;
 
-    private PrinterOutput printerOutputMock;
     private TransactionRepositoryOutput transactionRepositoryOutputMock;
+    private StatementFormatterOutput statementFormatterOutputMock;
 
     @BeforeEach
     void setUp() {
-        this.printerOutputMock = Mockito.mock(PrinterOutput.class);
         this.transactionRepositoryOutputMock = Mockito.mock(TransactionRepositoryOutput.class);
+        this.statementFormatterOutputMock = Mockito.mock(StatementFormatterOutput.class);
 
-        this.printStatementFeature = new PrintStatementFeature(printerOutputMock, transactionRepositoryOutputMock);
+        this.printStatementFeature = new PrintStatementFeature(transactionRepositoryOutputMock, statementFormatterOutputMock);
     }
 
     @Test
-    void shouldPrintEmptyStatement() {
-        // Mockito expectations
-        doNothing().when(printerOutputMock).print(isA(String.class));
-
-        // Execute the method being tested
-        printStatementFeature.printStatement();
-
-        // Validation
-        verify(printerOutputMock).print("OPERATION | DATE | AMOUNT | BALANCE");
-    }
-
-    @Test
-    void shouldPrintStatementWithOneTransaction() {
+    void shouldPrintStatementWithEmptyTransactions() {
         // Input objects
-        Transaction transaction = new Transaction(TransactionType.DEPOSIT, LocalDate.of(2021, 11, 28), 1000, 1000);
-
-        // Expected objects
-        List<Transaction> transactions = Arrays.asList(transaction);
+        List<Transaction> transactions = EMPTY_LIST;
 
         // Mockito expectations
         given(transactionRepositoryOutputMock.findAllTransactions()).willReturn(transactions);
@@ -59,9 +44,25 @@ public class PrintStatementFeatureTest {
         printStatementFeature.printStatement();
 
         // Validation
-        verify(printerOutputMock).print(
-                "OPERATION | DATE | AMOUNT | BALANCE\n" +
-                        "DEPOSIT | 28/11/2021 | 1000,00€ | 1000,00€");
+        verify(statementFormatterOutputMock).print(transactions);
+    }
+
+    @Test
+    void shouldPrintStatementWithOneTransaction() {
+        // Input objects
+        Transaction transaction = new Transaction(TransactionType.DEPOSIT, LocalDate.of(2021, 11, 28), 1000, 1000);
+
+        // Expected objects
+        List<Transaction> transactions = asList(transaction);
+
+        // Mockito expectations
+        given(transactionRepositoryOutputMock.findAllTransactions()).willReturn(transactions);
+
+        // Execute the method being tested
+        printStatementFeature.printStatement();
+
+        // Validation
+        verify(statementFormatterOutputMock).print(transactions);
     }
 
     @Test
@@ -81,10 +82,6 @@ public class PrintStatementFeatureTest {
         printStatementFeature.printStatement();
 
         // Validation
-        verify(printerOutputMock).print(
-                "OPERATION | DATE | AMOUNT | BALANCE\n" +
-                        "DEPOSIT | 28/11/2021 | 1000,00€ | 1000,00€\n" +
-                        "WITHDRAWL | 30/11/2021 | -100,00€ | 900,00€\n" +
-                        "DEPOSIT | 05/12/2021 | 500,00€ | 1400,00€");
+        verify(statementFormatterOutputMock).print(transactions);
     }
 }

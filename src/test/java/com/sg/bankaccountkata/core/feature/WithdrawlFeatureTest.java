@@ -26,14 +26,14 @@ public class WithdrawlFeatureTest {
     private TransactionRepositoryOutput transactionRepositoryOutputMock;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.transactionRepositoryOutputMock = Mockito.mock(TransactionRepositoryOutput.class);
 
         this.withdrawlFeature = new WithdrawlFeature(this.transactionRepositoryOutputMock);
     }
 
     @Test
-    public void shouldMakeAWithdrawal() throws NegativeAmountException, NotEnoughMoneyException {
+    void shouldMakeAWithdrawal() throws NegativeAmountException, NotEnoughMoneyException {
         // Input objects
         int moneyToRetrive = 100;
         List<Transaction> transactions = asList(new Transaction(TransactionType.DEPOSIT, LocalDate.now(), 100, 100));
@@ -53,7 +53,7 @@ public class WithdrawlFeatureTest {
     }
 
     @Test
-    public void shouldFailWithdrawlWhenNegativeAmount() {
+    void shouldFailWithdrawlWhenNegativeAmount() {
         // Input objects
         int moneyToRetrive = -100;
 
@@ -71,7 +71,7 @@ public class WithdrawlFeatureTest {
     }
 
     @Test
-    public void shouldFailWithdrawlWhenNotEnoughMoney() {
+    void shouldFailWithdrawlWhenNotEnoughMoney() {
         // Input objects
         int moneyToRetrive = 100;
 
