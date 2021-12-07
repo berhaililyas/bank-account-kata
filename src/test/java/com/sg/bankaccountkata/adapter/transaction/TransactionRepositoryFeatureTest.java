@@ -1,4 +1,4 @@
-package com.sg.bankaccountkata.adapter;
+package com.sg.bankaccountkata.adapter.transaction;
 
 import com.sg.bankaccountkata.core.domain.Transaction;
 import com.sg.bankaccountkata.core.domain.TransactionType;

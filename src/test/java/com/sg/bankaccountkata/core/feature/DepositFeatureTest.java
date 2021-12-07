@@ -3,7 +3,7 @@ package com.sg.bankaccountkata.core.feature;
 import com.sg.bankaccountkata.core.domain.Transaction;
 import com.sg.bankaccountkata.core.domain.TransactionType;
 import com.sg.bankaccountkata.core.exception.NegativeAmountException;
-import com.sg.bankaccountkata.core.port.out.TransactionRepositoryOutput;
+import com.sg.bankaccountkata.core.port.out.transaction.TransactionRepositoryOutput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

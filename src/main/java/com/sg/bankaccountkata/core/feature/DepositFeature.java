@@ -4,7 +4,7 @@ import com.sg.bankaccountkata.core.domain.Transaction;
 import com.sg.bankaccountkata.core.domain.TransactionType;
 import com.sg.bankaccountkata.core.exception.NegativeAmountException;
 import com.sg.bankaccountkata.core.port.in.DepositInputPort;
-import com.sg.bankaccountkata.core.port.out.TransactionRepositoryOutput;
+import com.sg.bankaccountkata.core.port.out.transaction.TransactionRepositoryOutput;
 
 import java.time.LocalDate;
 
@@ -22,7 +22,6 @@ public class DepositFeature implements DepositInputPort {
         }
 
         final int currentBalance = calculateAndGetCurrentBalance();
-
         Transaction transaction = new Transaction(
                 TransactionType.DEPOSIT,
                 LocalDate.now(),

@@ -1,7 +1,7 @@
-package com.sg.bankaccountkata.adapter;
+package com.sg.bankaccountkata.adapter.transaction;
 
 import com.sg.bankaccountkata.core.domain.Transaction;
-import com.sg.bankaccountkata.core.port.out.TransactionFormatterOutput;
+import com.sg.bankaccountkata.core.port.out.transaction.TransactionFormatterOutput;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;

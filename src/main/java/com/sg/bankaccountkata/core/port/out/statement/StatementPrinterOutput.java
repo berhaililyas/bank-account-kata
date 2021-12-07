@@ -1,4 +1,4 @@
-package com.sg.bankaccountkata.core.port.out;
+package com.sg.bankaccountkata.core.port.out.statement;
 
 
 public interface StatementPrinterOutput {

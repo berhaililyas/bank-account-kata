@@ -1,4 +1,4 @@
-package com.sg.bankaccountkata.adapter;
+package com.sg.bankaccountkata.adapter.statement;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

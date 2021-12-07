@@ -1,7 +1,7 @@
-package com.sg.bankaccountkata.adapter;
+package com.sg.bankaccountkata.adapter.transaction;
 
 import com.sg.bankaccountkata.core.domain.Transaction;
-import com.sg.bankaccountkata.core.port.out.TransactionRepositoryOutput;
+import com.sg.bankaccountkata.core.port.out.transaction.TransactionRepositoryOutput;
 
 import java.util.ArrayList;
 import java.util.List;

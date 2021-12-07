@@ -1,7 +1,7 @@
-package com.sg.bankaccountkata.adapter;
+package com.sg.bankaccountkata.adapter.statement;
 
 
-import com.sg.bankaccountkata.core.port.out.StatementPrinterOutput;
+import com.sg.bankaccountkata.core.port.out.statement.StatementPrinterOutput;
 
 public class StatementPrinterFeature implements StatementPrinterOutput {
 

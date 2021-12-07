@@ -1,8 +1,8 @@
 package com.sg.bankaccountkata.core.feature;
 
 import com.sg.bankaccountkata.core.port.in.PrintStatementInputPort;
-import com.sg.bankaccountkata.core.port.out.StatementFormatterOutput;
-import com.sg.bankaccountkata.core.port.out.TransactionRepositoryOutput;
+import com.sg.bankaccountkata.core.port.out.statement.StatementFormatterOutput;
+import com.sg.bankaccountkata.core.port.out.transaction.TransactionRepositoryOutput;
 
 public class PrintStatementFeature implements PrintStatementInputPort {
 

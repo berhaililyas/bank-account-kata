@@ -5,7 +5,7 @@ import com.sg.bankaccountkata.core.domain.TransactionType;
 import com.sg.bankaccountkata.core.exception.NegativeAmountException;
 import com.sg.bankaccountkata.core.exception.NotEnoughMoneyException;
 import com.sg.bankaccountkata.core.port.in.WithdrawlInputPort;
-import com.sg.bankaccountkata.core.port.out.TransactionRepositoryOutput;
+import com.sg.bankaccountkata.core.port.out.transaction.TransactionRepositoryOutput;
 
 import java.time.LocalDate;
 
@@ -23,7 +23,6 @@ public class WithdrawlFeature implements WithdrawlInputPort {
         }
 
         final int currentBalance = calculateAndGetCurrentBalance();
-
         if (withdrawlAmount > currentBalance) {
             throw new NotEnoughMoneyException("Withdrawal not possible, your account should be recharged");
         }

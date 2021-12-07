@@ -1,9 +1,9 @@
-package com.sg.bankaccountkata.adapter;
+package com.sg.bankaccountkata.adapter.statement;
 
 import com.sg.bankaccountkata.core.domain.Transaction;
-import com.sg.bankaccountkata.core.port.out.StatementFormatterOutput;
-import com.sg.bankaccountkata.core.port.out.StatementPrinterOutput;
-import com.sg.bankaccountkata.core.port.out.TransactionFormatterOutput;
+import com.sg.bankaccountkata.core.port.out.statement.StatementFormatterOutput;
+import com.sg.bankaccountkata.core.port.out.statement.StatementPrinterOutput;
+import com.sg.bankaccountkata.core.port.out.transaction.TransactionFormatterOutput;
 
 import java.util.List;
 
