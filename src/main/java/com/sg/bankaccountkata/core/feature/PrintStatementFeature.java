@@ -30,15 +30,25 @@ public class PrintStatementFeature implements PrintStatementInputPort {
 
         StringBuilder statement = new StringBuilder();
 
-        statement.append(STATEMENT_HEADER);
-
-        transactions.stream()
-                .forEach(transaction -> {
-                    statement.append("\n");
-                    statement.append(format(transaction));
-                });
+        statement.append(printHeader())
+                .append(printStatementLines(transactions));
 
         printerOutput.print(statement.toString());
+    }
+
+    private StringBuilder printHeader() {
+        StringBuilder header = new StringBuilder();
+        return header.append(STATEMENT_HEADER);
+    }
+
+    private StringBuilder printStatementLines(List<Transaction> transactions) {
+        StringBuilder statementLines = new StringBuilder();
+        transactions.stream()
+                .forEach(transaction -> {
+                    statementLines.append("\n");
+                    statementLines.append(format(transaction));
+                });
+        return statementLines;
     }
 
     private String format(Transaction transaction) {
